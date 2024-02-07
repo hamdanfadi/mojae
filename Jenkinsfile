@@ -9,7 +9,7 @@ pipeline {
 
     parameters {
         choice(name: 'ACTION', choices: ['apply', 'destroy'], description: 'Choose Terraform action')
-        choice(name: 'ENVIRONMENT', choices: ['dev', 'prod', 'qa', 'staging'], description: 'Choose environment')
+        choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'staging', 'prod'], description: 'Choose environment')
     }
 
     stages {
@@ -20,7 +20,7 @@ pipeline {
                     checkout scm
 
                     // Navigate to the appropriate environment directory
-                    dir("environments/${params.ENVIRONMENT}") {
+                    dir("IaC/environments/${params.ENVIRONMENT}") {
                         echo "Changed directory to environments/${params.ENVIRONMENT}"
                     }
                 }
