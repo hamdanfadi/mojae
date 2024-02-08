@@ -7,9 +7,9 @@ terraform {
       source = "vmware/tanzu-mission-control"
       version = "1.4.2"
     }
-    vsphere = {
-      source = "hashicorp/vsphere"
-      version = "2.6.1"
+    vcd = {
+      source  = "vmware/vcd"
+      version = "3.11.0"
     }
   }
 }
