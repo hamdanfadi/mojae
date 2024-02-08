@@ -1,5 +1,5 @@
 # https://registry.terraform.io/providers/vmware/tanzu-mission-control/latest/docs
-# https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs
+# https://registry.terraform.io/providers/vmware/vcd/latest/docs
 
 terraform {
   required_providers {
