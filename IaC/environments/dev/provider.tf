@@ -27,9 +27,20 @@ provider "tanzu-mission-control" {
   ca_file = var.ca_file # Path to Host's root ca set. The certificates issued by the issuer should be trusted by the host accessing TMC Self-Managed via TMC terraform provider.
 }
 
-provider "vsphere" {
-  user                 = var.vsphere_user
-  password             = var.vsphere_password
-  vsphere_server       = var.vsphere_server
-  allow_unverified_ssl = true
+
+# Configure the VMware Cloud Director Provider
+provider "vcd" {
+  user                 = var.vcd_user
+  password             = var.vcd_pass
+  auth_type            = "integrated"
+  org                  = var.vcd_org
+  vdc                  = var.vcd_vdc
+  url                  = var.vcd_url
+  max_retry_timeout    = var.vcd_max_retry_timeout
+  allow_unverified_ssl = var.vcd_allow_unverified_ssl
+}
+ 
+# Create a new network in organization and VDC defined above
+resource "vcd_network_routed" "net" {
+  # ...
 }
