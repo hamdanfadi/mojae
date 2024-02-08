@@ -1,10 +1,15 @@
 # https://registry.terraform.io/providers/vmware/tanzu-mission-control/latest/docs
+# https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs
 
 terraform {
   required_providers {
     tanzu-mission-control = {
       source = "vmware/tanzu-mission-control"
       version = "1.4.2"
+    }
+    vsphere = {
+      source = "hashicorp/vsphere"
+      version = "2.6.1"
     }
   }
 }
@@ -20,4 +25,11 @@ provider "tanzu-mission-control" {
     password    = var.password    # optionally use TMC_SM_PASSWORD env var
   }
   ca_file = var.ca_file # Path to Host's root ca set. The certificates issued by the issuer should be trusted by the host accessing TMC Self-Managed via TMC terraform provider.
+}
+
+provider "vsphere" {
+  user                 = var.vsphere_user
+  password             = var.vsphere_password
+  vsphere_server       = var.vsphere_server
+  allow_unverified_ssl = true
 }
