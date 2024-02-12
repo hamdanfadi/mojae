@@ -67,7 +67,7 @@ resource "tanzu-mission-control_cluster" "create_tkg_vsphere_cluster" {
             memory    = var.control_plan_memory
           }
 
-          high_availability = var.control_plan_high_availabilityfalse
+          high_availability = var.control_plan_high_availability
         }
 
        node_pools {
