@@ -15,75 +15,77 @@ resource "tanzu-mission-control_cluster" "create_tkg_vsphere_cluster" {
   name                    = var.tkg_cluster_name
 
   meta {
-    labels = { "env" : var.env }
+    labels = { 
+      "env" : var.env  }
+    
   }
 
   spec {
-    cluster_group = var.cluster_group # Default: default
+    cluster_group = "default" # Default: default
     tkg_vsphere {
       settings {
         network {
           pods {
             cidr_blocks = [
-              var.pods_cidr_block,
+              "172.20.0.0/16", # pods cidr block by default has the value `172.20.0.0/16`
             ]
           }
 
           services {
             cidr_blocks = [
-              var.services_cidr_block,
+              "10.96.0.0/16", # services cidr block by default has the value `10.96.0.0/16`
             ]
           }
 
-          api_server_port         = var.api_server_port
-          control_plane_end_point = var.control_plane_end_point # optional for AVI enabled option
+          api_server_port         = 6443
+          control_plane_end_point = "10.191.249.39" # optional for AVI enabled option
         }
 
         security {
-          ssh_key = var.ssh_key
+          ssh_key = "default"
         }
       }
 
       distribution {
-        os_arch    = var.os_arch
-        os_name    = var.os_name
-        os_version = var.os_version
-        version    = var.distribution_version
+        os_arch    = ""
+        os_name    = ""
+        os_version = ""
+        version    = ""
 
         workspace {
-          datacenter        = var.workspace_datacenter
-          datastore         = var.workspace_datastore
-          workspace_network = var.workspace_network
-          folder            = var.workspace_folder
-          resource_pool     = var.workspace_resource_pool
+          datacenter        = "/dc0"
+          datastore         = "/dc0/datastore/local-0"
+          workspace_network = "/dc0/network/Avi Internal"
+          folder            = "/dc0/vm"
+          resource_pool     = "/dc0/host/cluster0/Resources"
         }
       }
 
       topology {
         control_plane {
           vm_config {
-            cpu       = var.control_plan_cpu
-            disk_size = var.control_plan_disk_size
-            memory    = var.control_plan_memory
+            cpu       = "2"
+            disk_size = "100"
+            memory    = "4096" #4GB
           }
 
-          high_availability = var.control_plan_high_availability
+          high_availability = false
         }
 
-       node_pools {
-          spec {
-            worker_node_count = var.node_pools_worker_node_count
+        node_pools {
+            spec {
+              worker_node_count = "2"
 
-            tkg_vsphere {
-              vm_config {
-                cpu       = var.node_pools_cpu
-                disk_size = var.node_pools_disk_size
-                memory    = var.node_pools_memory
+              tkg_vsphere {
+                vm_config {
+                  cpu       = "8"
+                  disk_size = "100"
+                  memory    = "16384" #16GB
+                }
               }
             }
-          }
 
-        }
+          }
 
     
       }
@@ -140,6 +142,8 @@ data "vcd_vapp_org_network" "vappOrgNet" {
 }
 
 resource "vcd_vapp_vm" "vm" {
+
+  
   for_each = { for i in range(var.vm_count) : i => i }
   org                     = var.vdc_org_name
   vdc                     = var.vdc_name
@@ -187,6 +191,9 @@ resource "vcd_vapp_vm" "vm" {
     }
   
   }  
+
+   
+
 
 
 }

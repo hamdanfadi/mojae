@@ -1,28 +1,6 @@
 variable "env" {
   type    = string
 }
-variable "tkg_cluster_name" {
-  type    = string
-}
-
-variable "tmc_oidc_issuer" {
-  
-}
-variable "tmc_username" {
-  type = string
-}
-
-variable "tmc_password" {
-  type = string
-}
-variable "tmc_endpoint" {
-  type = string
-}
-variable "ca_file" {
-  type = string
-}
-
-
 
 variable "vcd_user" {
   type = string
@@ -166,7 +144,7 @@ variable "vm_min_cpu" {
   type    = number
   default = 2
 }
-//do we have to add this variables on the root 
+
 variable "vm_count" {
   type    = number
   default = ""
