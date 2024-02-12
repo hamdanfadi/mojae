@@ -19,66 +19,66 @@ resource "tanzu-mission-control_cluster" "create_tkg_vsphere_cluster" {
   }
 
   spec {
-    cluster_group = "default" # Default: default
+    cluster_group = var.cluster_group # Default: default
     tkg_vsphere {
       settings {
         network {
           pods {
             cidr_blocks = [
-              "172.20.0.0/16", # pods cidr block by default has the value `172.20.0.0/16`
+              var.pods_cidr_block,
             ]
           }
 
           services {
             cidr_blocks = [
-              "10.96.0.0/16", # services cidr block by default has the value `10.96.0.0/16`
+              var.services_cidr_block,
             ]
           }
 
-          api_server_port         = 6443
-          control_plane_end_point = "10.191.249.39" # optional for AVI enabled option
+          api_server_port         = var.api_server_port
+          control_plane_end_point = var.control_plane_end_point # optional for AVI enabled option
         }
 
         security {
-          ssh_key = "default"
+          ssh_key = var.ssh_key
         }
       }
 
       distribution {
-        os_arch    = "amd64"
-        os_name    = "photon"
-        os_version = "4"
-        version    = "v1.26.5---vmware.2-fips.1-tkg.1"
+        os_arch    = var.os_arch
+        os_name    = var.os_name
+        os_version = var.os_version
+        version    = var.distribution_version
 
         workspace {
-          datacenter        = "/dc0"
-          datastore         = "/dc0/datastore/local-0"
-          workspace_network = "/dc0/network/Avi Internal"
-          folder            = "/dc0/vm"
-          resource_pool     = "/dc0/host/cluster0/Resources"
+          datacenter        = var.workspace_datacenter
+          datastore         = var.workspace_datastore
+          workspace_network = var.workspace_network
+          folder            = var.workspace_folder
+          resource_pool     = var.workspace_resource_pool
         }
       }
 
       topology {
         control_plane {
           vm_config {
-            cpu       = "2"
-            disk_size = "100"
-            memory    = "4096" #4GB
+            cpu       = var.control_plan_cpu
+            disk_size = var.control_plan_disk_size
+            memory    = var.control_plan_memory
           }
 
-          high_availability = false
+          high_availability = var.control_plan_high_availabilityfalse
         }
 
        node_pools {
           spec {
-            worker_node_count = "2"
+            worker_node_count = var.node_pools_worker_node_count
 
             tkg_vsphere {
               vm_config {
-                cpu       = "8"
-                disk_size = "100"
-                memory    = "16384" #16GB
+                cpu       = var.node_pools_cpu
+                disk_size = var.node_pools_disk_size
+                memory    = var.node_pools_memory
               }
             }
           }
