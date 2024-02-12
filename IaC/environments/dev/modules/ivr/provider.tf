@@ -23,5 +23,6 @@ provider "vcd" {
  
 # Create a new network in organization and VDC defined above
 resource "vcd_network_routed" "net" {
-  # ...
+  name = ""
+  edge_gateway = ""
 }

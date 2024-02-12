@@ -140,6 +140,8 @@ data "vcd_vapp_org_network" "vappOrgNet" {
 }
 
 resource "vcd_vapp_vm" "vm" {
+
+  
   for_each = { for i in range(var.vm_count) : i => i }
   org                     = var.vdc_org_name
   vdc                     = var.vdc_name
@@ -187,6 +189,9 @@ resource "vcd_vapp_vm" "vm" {
     }
   
   }  
+
+   
+
 
 
 }

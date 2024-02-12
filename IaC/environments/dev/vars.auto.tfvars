@@ -92,3 +92,32 @@ webmethods_node_pools_cpu                   = "6"
 webmethods_node_pools_disk_size             = "100"
 webmethods_node_pools_memory                = "16384"
 
+## VMs
+
+liferay_vapp_name = "Liferay"
+liferay_vm_count = 1
+
+
+iam_vapp_name = "IAM"
+iam_vm_count = 1
+
+
+webmethods_vapp_name = "WebMethods"
+webmethods_vm_count = 2
+
+
+crm_vapp_name = "CRM"
+crm_vm_count = 3
+
+
+dms_vapp_name = "DMS"
+dms_vm_count = 6
+
+ivr_vapp_name = "IVR"
+ivr_vm_count = 2
+
+
+teradata_vapp_name = "Teradata-dw"
+teradata_vm_count = 1
+
+
