@@ -16,6 +16,10 @@ module "crm" {
   vm_cpu_hot_add_enabled = var.crm_vm_cpu_hot_add_enabled
   catalog_org_name = var.crm_catalog_org_name
   catalog_template_name = var.crm_catalog_template_name
+  os_type = var.crm_os_type
+
+  vm_customization_join_domain_name = var.crm_customization_join_domain_name
+  vm_customization_join_domain_password = var.crm_customization_join_domain_password
   
 }
 
@@ -33,6 +37,10 @@ module "dms" {
   vdc_group_name = var.dms_vdc_group_name
   vdc_org_name = var.dms_vdc_org_name
   catalog_org_name = var.dms_catalog_org_name
+  os_type = var.dms_os_type
+
+  vm_customization_join_domain_name = var.dms_customization_join_domain_name
+  vm_customization_join_domain_password = var.dms_customization_join_domain_password
   }
 
 
@@ -79,7 +87,13 @@ module "iam" {
   vcd_allow_unverified_ssl = var.iam_vcd_allow_unverified_ssl
   vcd_org = var.iam_vcd_org
   vcd_vdc = var.iam_vcd_vdc
+  os_type = var.iam_os_type
+
+  vm_customization_join_domain_name = var.iam_customization_join_domain_name
+  vm_customization_join_domain_password = var.iam_customization_join_domain_password
 }
+
+
 module "ivr" {
   source = "./modules/ivr"
   env = var.env
@@ -93,6 +107,10 @@ module "ivr" {
   vcd_allow_unverified_ssl = var.ivr_vcd_allow_unverified_ssl
   vcd_org = var.ivr_vcd_org
   vcd_vdc = var.ivr_vcd_vdc
+  os_type = var.ivr_os_type
+
+  vm_customization_join_domain_name = var.ivr_customization_join_domain_name
+  vm_customization_join_domain_password = var.ivr_customization_join_domain_password
 
 }
 
@@ -142,7 +160,14 @@ module "liferay" {
   tmc_username = var.liferay_tmc_username
   ca_file = var.liferay_ca_file
   vm_count = var.liferay_vm_count
+  os_type = var.liferay_os_type
+
+  vm_customization_join_domain_name = var.liferay_customization_join_domain_name
+  vm_customization_join_domain_password = var.liferay_customization_join_domain_password
+
 }
+
+
 module "teradata-dw" {
   source = "./modules/teradata-dw"
   env = var.env
@@ -156,8 +181,13 @@ module "teradata-dw" {
   vcd_allow_unverified_ssl = var.teradata_vcd_allow_unverified_ssl
   vcd_org = var.teradata_vcd_org
   vcd_vdc = var.teradata_vcd_vdc
+  os_type = var.teradata_os_type
 
-}
+   vm_customization_join_domain_name = var.teradata_customization_join_domain_name
+  vm_customization_join_domain_password = var.teradata_customization_join_domain_password
+  }
+
+
 module "webmethods" {
   source = "./modules/webmethods"
   env = var.env
@@ -204,4 +234,8 @@ module "webmethods" {
   tmc_username = var.webmethods_tmc_username
   ca_file = var.webmethods_ca_file
   vm_count = var.webmethods_vm_count
+  os_type = var.webmethods_os_type
+
+  vm_customization_join_domain_name = var.webmethods_customization_join_domain_name
+  vm_customization_join_domain_password = var.webmethods_customization_join_domain_password
 }

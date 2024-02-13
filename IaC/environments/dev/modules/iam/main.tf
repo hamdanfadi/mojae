@@ -189,7 +189,23 @@ resource "vcd_vapp_vm" "vm" {
     }
   
   }  
-
+  customization {
+    force                               = var.vm_customization_force
+    enabled                             = var.vm_customization_enabled
+    change_sid                          = var.vm_customization_change_sid
+    allow_local_admin_password          = var.vm_customization_allow_local_admin_password
+    must_change_password_on_first_login = var.vm_customization_must_change_password_on_first_login
+    auto_generate_password              = var.vm_customization_auto_generate_password
+    admin_password                      = var.vm_customization_admin_password
+    number_of_auto_logons               = var.vm_customization_number_of_auto_logons
+    join_domain                         = var.vm_customization_join_domain
+    join_org_domain                     = var.vm_customization_join_org_domain
+    join_domain_name                    = var.vm_customization_join_domain_name
+    join_domain_user                    = var.vm_customization_join_domain_user
+    join_domain_password                = var.vm_customization_join_domain_password
+    join_domain_account_ou              = var.vm_customization_join_domain_account_ou
+    initscript                          = var.vm_customization_initscript
+  }
 
 }
 

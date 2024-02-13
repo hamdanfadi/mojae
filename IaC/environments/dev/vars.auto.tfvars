@@ -92,32 +92,165 @@ webmethods_node_pools_cpu                   = "6"
 webmethods_node_pools_disk_size             = "100"
 webmethods_node_pools_memory                = "16384"
 
-## VMs
+## VMs ###############################################################
 
 liferay_vapp_name = "Liferay"
 liferay_vm_count = 1
+liferay_vcd_org = ""
+liferay_vcd_vdc = "" 
+liferay_vcd_url = ""
+liferay_vcd_allow_unverified_ssl = true
+liferay_org_network = ""
+liferay_vm_name = ""
+liferay_catalog = ""
+liferay_template = ""
+//vm_instances = 1
+liferay_os_type=  "windows2019srv_64Guest"
+liferay_mem = null
+liferay_cpu_num = null
+liferay_cores = null
+liferay_power_on = null
 
 
+
+###############################################################
 iam_vapp_name = "IAM"
 iam_vm_count = 1
+iam_vcd_org = ""
+iam_vcd_vdc = "" 
+iam_vcd_url = ""
+iam_vcd_allow_unverified_ssl = true
+iam_org_network = ""
+iam_vapp_name = ""
+iam_vm_name = ""
+iam_catalog = ""
+iam_template = ""
+//vm_instances = 1
+iam_os_type=  "windows2019srv_64Guest"
+iam_mem = null
+iam_cpu_num = null
+iam_cores = null
+iam_power_on = null
 
 
+
+###############################################################
 webmethods_vapp_name = "WebMethods"
 webmethods_vm_count = 2
+webmethods_vcd_org = ""
+webmethods_vcd_vdc = "" 
+webmethods_vcd_url = ""
+webmethods_vcd_allow_unverified_ssl = true
+webmethods_org_network = ""
+webmethods_vm_name = ""
+webmethods_catalog = ""
+webmethods_template = ""
+//vm_instances = 1
+webmethods_os_type=  "windows2019srv_64Guest"
+webmethods_mem = null
+webmethods_cpu_num = null
+webmethods_cores = null
+webmethods_power_on = null
 
-
+###############################################################
 crm_vapp_name = "CRM"
 crm_vm_count = 3
+crm_vcd_org = ""
+crm_vcd_vdc = "" 
+crm_vcd_url = ""
+crm_vcd_allow_unverified_ssl = true
+//crm_org_network = ""
+crm_vm_name = ""
+//crm_catalog = ""
+//crm_template = ""
+//vm_instances = 1
+crm_os_type=  "windows2019srv_64Guest"
+crm_mem = null
+crm_cpu_num = null
+crm_cores = null
+crm_power_on = null
 
 
+###############################################################
 dms_vapp_name = "DMS"
 dms_vm_count = 6
+dms_vcd_org = ""
+dms_vcd_vdc = "" 
+dms_vcd_url = ""
+dms_vcd_allow_unverified_ssl = true
+dms_org_network = ""
+dms_vm_name = ""
+dms_catalog = ""
+dms_template = ""
+//vm_instances = 1
+dms_os_type=  "windows2019srv_64Guest"
+dms_mem = null
+dms_cpu_num = null
+dms_cores = null
+dms_power_on = null
 
+
+
+###############################################################
 ivr_vapp_name = "IVR"
 ivr_vm_count = 2
+ivr_vcd_org = ""
+ivr_vcd_vdc = "" 
+ivr_vcd_url = ""
+ivr_vcd_allow_unverified_ssl = true
+ivr_org_network = ""
+ivr_vm_name = ""
+ivr_catalog = ""
+ivr_template = ""
+//vm_instances = 1
+ivr_os_type=  "windows2019srv_64Guest"
+ivr_mem = null
+ivr_cpu_num = null
+ivr_cores = null
+ivr_power_on = null
 
 
+
+###############################################################
 teradata_vapp_name = "Teradata-dw"
 teradata_vm_count = 1
+teradata_vcd_org = ""
+teradata_vcd_vdc = "" 
+teradata_vcd_url = ""
+teradata_vcd_allow_unverified_ssl = true
+teradata_org_network = ""
+teradata_vm_name = ""
+teradata_catalog = ""
+teradata_template = ""
+//vm_instances = 1
+teradata_os_type = "windows2019srv_64Guest"
+teradata_mem = null
+teradata_cpu_num = null
+teradata_cores = null
+teradata_power_on = null
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

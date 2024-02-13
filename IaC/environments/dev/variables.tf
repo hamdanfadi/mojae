@@ -258,6 +258,11 @@ variable "liferay_ca_file" {
   type = string
 }
 
+variable "liferay_os_type" {
+  type = string
+  
+}
+
 
 variable "liferay_vcd_user" {
   type = string
@@ -427,7 +432,7 @@ variable "liferay_vm_metadata_entries" {
     },
     {
       key         = "Operating System"
-      value       = "Ubuntu Linux (64-Bit)"
+      value       = "Microsoft Windows Server 2019 (64-bit)"
       type        = "MetadataStringValue"
       user_access = "READWRITE"
       is_system   = false
@@ -514,8 +519,98 @@ variable "liferay_vm_ips_index_multiplier" {
   default     = 1
 }
 
+variable "liferay_customization_force" {
+  description = "Warning. Setting to true will cause the VM to reboot on every apply operation. This field works as a flag and triggers force customization when true during an update (terraform apply) every time. It never complains about a change in statefile. Can be used when guest customization is needed after VM configuration (e.g. NIC change, customization options change, etc.) and then set back to false. Note. It will not have effect when power_on field is set to false."
+  type        = bool
+  default     = false
+}
 
-#CRM VARIABLES
+variable "liferay_customization_enabled" {
+  description = "Enables guest customization which may occur on first boot or if the force flag is used. This option should be selected for Power on and Force re-customization to work."
+  type        = bool
+  default     = true
+}
+
+variable "liferay_customization_change_sid" {
+  description = "Allows to change SID (security identifier). Only applicable for Windows operating systems."
+  type        = bool
+  default     = true
+}
+
+variable "liferay_customization_allow_local_admin_password" {
+  description = "Allow local administrator password."
+  type        = bool
+  default     = true
+}
+
+variable "liferay_customization_must_change_password_on_first_login" {
+  description = "Require Administrator to change password on first login."
+  type        = bool
+  default     = false
+}
+
+variable "liferay_customization_auto_generate_password" {
+  description = "Auto generate password."
+  type        = bool
+  default     = true
+}
+
+variable "liferay_customization_admin_password" {
+  description = "Manually specify Administrator password."
+  type        = string
+  default     = null
+}
+
+variable "liferay_customization_number_of_auto_logons" {
+  description = "Number of times to log on automatically. 0 means disabled."
+  type        = number
+  default     = 0
+}
+
+variable "liferay_customization_join_domain" {
+  description = "Enable this VM to join a domain."
+  type        = bool
+  default     = false
+}
+
+variable "liferay_customization_join_org_domain" {
+  description = "Set to true to use organization's domain."
+  type        = bool
+  default     = false
+}
+
+variable "liferay_customization_join_domain_name" {
+  description = "Set the domain name to override organization's domain name."
+  type        = string
+  default     = null
+}
+
+variable "liferay_customization_join_domain_user" {
+  description = "User to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "liferay_customization_join_domain_password" {
+  description = "Password to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "liferay_customization_join_domain_account_ou" {
+  description = "Organizational unit to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "liferay_customization_initscript" {
+  description = "Provide initscript to be executed when customization is applied."
+  type        = string
+  default     = null
+}
+
+
+#CRM VARIABLES ##
 variable "crm_vcd_user" {
   type = string
 }
@@ -565,6 +660,11 @@ variable "crm_vdc_name" {
   type        = string
   description = "Cloud Director VDC Name"
   default     = ""
+}
+
+variable "crm_os_type" {
+  type = string
+  
 }
 
 variable "crm_vdc_edge_name" {
@@ -684,7 +784,7 @@ variable "crm_vm_metadata_entries" {
     },
     {
       key         = "Operating System"
-      value       = "Ubuntu Linux (64-Bit)"
+      value       = "Microsoft Windows Server 2019 (64-bit)"
       type        = "MetadataStringValue"
       user_access = "READWRITE"
       is_system   = false
@@ -769,6 +869,97 @@ variable "crm_vm_ips_index_multiplier" {
   default     = 1
 }
 
+variable "crm_customization_force" {
+  description = "Warning. Setting to true will cause the VM to reboot on every apply operation. This field works as a flag and triggers force customization when true during an update (terraform apply) every time. It never complains about a change in statefile. Can be used when guest customization is needed after VM configuration (e.g. NIC change, customization options change, etc.) and then set back to false. Note. It will not have effect when power_on field is set to false."
+  type        = bool
+  default     = false
+}
+
+variable "crm_customization_enabled" {
+  description = "Enables guest customization which may occur on first boot or if the force flag is used. This option should be selected for Power on and Force re-customization to work."
+  type        = bool
+  default     = true
+}
+
+variable "crm_customization_change_sid" {
+  description = "Allows to change SID (security identifier). Only applicable for Windows operating systems."
+  type        = bool
+  default     = true
+}
+
+variable "crm_customization_allow_local_admin_password" {
+  description = "Allow local administrator password."
+  type        = bool
+  default     = true
+}
+
+variable "crm_customization_must_change_password_on_first_login" {
+  description = "Require Administrator to change password on first login."
+  type        = bool
+  default     = false
+}
+
+variable "crm_customization_auto_generate_password" {
+  description = "Auto generate password."
+  type        = bool
+  default     = true
+}
+
+variable "crm_customization_admin_password" {
+  description = "Manually specify Administrator password."
+  type        = string
+  default     = null
+}
+
+variable "crm_customization_number_of_auto_logons" {
+  description = "Number of times to log on automatically. 0 means disabled."
+  type        = number
+  default     = 0
+}
+
+variable "crm_customization_join_domain" {
+  description = "Enable this VM to join a domain."
+  type        = bool
+  default     = false
+}
+
+variable "crm_customization_join_org_domain" {
+  description = "Set to true to use organization's domain."
+  type        = bool
+  default     = false
+}
+
+variable "crm_customization_join_domain_name" {
+  description = "Set the domain name to override organization's domain name."
+  type        = string
+  default     = null
+}
+
+variable "crm_customization_join_domain_user" {
+  description = "User to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "crm_customization_join_domain_password" {
+  description = "Password to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "crm_customization_join_domain_account_ou" {
+  description = "Organizational unit to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "crm_customization_initscript" {
+  description = "Provide initscript to be executed when customization is applied."
+  type        = string
+  default     = null
+}
+
+
 
 # DMS VARIABLES 
 
@@ -823,6 +1014,10 @@ variable "dms_vdc_name" {
   type        = string
   description = "Cloud Director VDC Name"
   default     = ""
+}
+variable "dms_os_type" {
+  type = string
+  
 }
 
 variable "dms_vdc_edge_name" {
@@ -942,7 +1137,7 @@ variable "dms_vm_metadata_entries" {
     },
     {
       key         = "Operating System"
-      value       = "Ubuntu Linux (64-Bit)"
+      value       = "Microsoft Windows Server 2019 (64-bit)"
       type        = "MetadataStringValue"
       user_access = "READWRITE"
       is_system   = false
@@ -1027,6 +1222,97 @@ variable "dms_vm_ips_index_multiplier" {
   default     = 1
 }
 
+variable "dms_customization_force" {
+  description = "Warning. Setting to true will cause the VM to reboot on every apply operation. This field works as a flag and triggers force customization when true during an update (terraform apply) every time. It never complains about a change in statefile. Can be used when guest customization is needed after VM configuration (e.g. NIC change, customization options change, etc.) and then set back to false. Note. It will not have effect when power_on field is set to false."
+  type        = bool
+  default     = false
+}
+
+variable "dms_customization_enabled" {
+  description = "Enables guest customization which may occur on first boot or if the force flag is used. This option should be selected for Power on and Force re-customization to work."
+  type        = bool
+  default     = true
+}
+
+variable "dms_customization_change_sid" {
+  description = "Allows to change SID (security identifier). Only applicable for Windows operating systems."
+  type        = bool
+  default     = true
+}
+
+variable "dms_customization_allow_local_admin_password" {
+  description = "Allow local administrator password."
+  type        = bool
+  default     = true
+}
+
+variable "dms_customization_must_change_password_on_first_login" {
+  description = "Require Administrator to change password on first login."
+  type        = bool
+  default     = false
+}
+
+variable "dms_customization_auto_generate_password" {
+  description = "Auto generate password."
+  type        = bool
+  default     = true
+}
+
+variable "dms_customization_admin_password" {
+  description = "Manually specify Administrator password."
+  type        = string
+  default     = null
+}
+
+variable "dms_customization_number_of_auto_logons" {
+  description = "Number of times to log on automatically. 0 means disabled."
+  type        = number
+  default     = 0
+}
+
+variable "dms_customization_join_domain" {
+  description = "Enable this VM to join a domain."
+  type        = bool
+  default     = false
+}
+
+variable "dms_customization_join_org_domain" {
+  description = "Set to true to use organization's domain."
+  type        = bool
+  default     = false
+}
+
+variable "dms_customization_join_domain_name" {
+  description = "Set the domain name to override organization's domain name."
+  type        = string
+  default     = null
+}
+
+variable "dms_customization_join_domain_user" {
+  description = "User to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "dms_customization_join_domain_password" {
+  description = "Password to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "dms_customization_join_domain_account_ou" {
+  description = "Organizational unit to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "dms_customization_initscript" {
+  description = "Provide initscript to be executed when customization is applied."
+  type        = string
+  default     = null
+}
+
+
 
 #IVR VARIABLES
 variable "ivr_env" {
@@ -1089,6 +1375,12 @@ variable "ivr_vdc_edge_name" {
   description = "Cloud Director Edge Name"
   default     = ""
 }
+
+variable "ivr_os_type" {
+  type = string
+  
+}
+
 
 variable "ivr_vm_sizing_policy_name" {
   type    = string
@@ -1201,7 +1493,7 @@ variable "ivr_vm_metadata_entries" {
     },
     {
       key         = "Operating System"
-      value       = "Ubuntu Linux (64-Bit)"
+      value       = "Microsoft Windows Server 2019 (64-bit)"
       type        = "MetadataStringValue"
       user_access = "READWRITE"
       is_system   = false
@@ -1286,6 +1578,97 @@ variable "ivr_vm_ips_index_multiplier" {
   default     = 1
 }
 
+variable "ivr_customization_force" {
+  description = "Warning. Setting to true will cause the VM to reboot on every apply operation. This field works as a flag and triggers force customization when true during an update (terraform apply) every time. It never complains about a change in statefile. Can be used when guest customization is needed after VM configuration (e.g. NIC change, customization options change, etc.) and then set back to false. Note. It will not have effect when power_on field is set to false."
+  type        = bool
+  default     = false
+}
+
+variable "ivr_customization_enabled" {
+  description = "Enables guest customization which may occur on first boot or if the force flag is used. This option should be selected for Power on and Force re-customization to work."
+  type        = bool
+  default     = true
+}
+
+variable "ivr_customization_change_sid" {
+  description = "Allows to change SID (security identifier). Only applicable for Windows operating systems."
+  type        = bool
+  default     = true
+}
+
+variable "ivr_customization_allow_local_admin_password" {
+  description = "Allow local administrator password."
+  type        = bool
+  default     = true
+}
+
+variable "ivr_customization_must_change_password_on_first_login" {
+  description = "Require Administrator to change password on first login."
+  type        = bool
+  default     = false
+}
+
+variable "ivr_customization_auto_generate_password" {
+  description = "Auto generate password."
+  type        = bool
+  default     = true
+}
+
+variable "ivr_customization_admin_password" {
+  description = "Manually specify Administrator password."
+  type        = string
+  default     = null
+}
+
+variable "ivr_customization_number_of_auto_logons" {
+  description = "Number of times to log on automatically. 0 means disabled."
+  type        = number
+  default     = 0
+}
+
+variable "ivr_customization_join_domain" {
+  description = "Enable this VM to join a domain."
+  type        = bool
+  default     = false
+}
+
+variable "ivr_customization_join_org_domain" {
+  description = "Set to true to use organization's domain."
+  type        = bool
+  default     = false
+}
+
+variable "ivr_customization_join_domain_name" {
+  description = "Set the domain name to override organization's domain name."
+  type        = string
+  default     = null
+}
+
+variable "ivr_customization_join_domain_user" {
+  description = "User to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "ivr_customization_join_domain_password" {
+  description = "Password to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "ivr_customization_join_domain_account_ou" {
+  description = "Organizational unit to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "ivr_customization_initscript" {
+  description = "Provide initscript to be executed when customization is applied."
+  type        = string
+  default     = null
+}
+
+
 #IAM VARIABLES
 
 variable "iam_env" {
@@ -1359,7 +1742,10 @@ variable "iam_vdc_group_name" {
 variable "iam_vdc_edge_name" {
   type = string
 }
-
+variable "iam_os_type" {
+  type = string
+  
+}
 variable "iam_vdc_name" {
   type        = string
   description = "Cloud Director VDC Name"
@@ -1483,7 +1869,7 @@ variable "iam_vm_metadata_entries" {
     },
     {
       key         = "Operating System"
-      value       = "Ubuntu Linux (64-Bit)"
+      value       = "Microsoft Windows Server 2019 (64-bit)"
       type        = "MetadataStringValue"
       user_access = "READWRITE"
       is_system   = false
@@ -1568,6 +1954,97 @@ variable "iam_vm_ips_index_multiplier" {
   default     = 1
 }
 
+variable "iam_customization_force" {
+  description = "Warning. Setting to true will cause the VM to reboot on every apply operation. This field works as a flag and triggers force customization when true during an update (terraform apply) every time. It never complains about a change in statefile. Can be used when guest customization is needed after VM configuration (e.g. NIC change, customization options change, etc.) and then set back to false. Note. It will not have effect when power_on field is set to false."
+  type        = bool
+  default     = false
+}
+
+variable "iam_customization_enabled" {
+  description = "Enables guest customization which may occur on first boot or if the force flag is used. This option should be selected for Power on and Force re-customization to work."
+  type        = bool
+  default     = true
+}
+
+variable "iam_customization_change_sid" {
+  description = "Allows to change SID (security identifier). Only applicable for Windows operating systems."
+  type        = bool
+  default     = true
+}
+
+variable "iam_customization_allow_local_admin_password" {
+  description = "Allow local administrator password."
+  type        = bool
+  default     = true
+}
+
+variable "iam_customization_must_change_password_on_first_login" {
+  description = "Require Administrator to change password on first login."
+  type        = bool
+  default     = false
+}
+
+variable "iam_customization_auto_generate_password" {
+  description = "Auto generate password."
+  type        = bool
+  default     = true
+}
+
+variable "iam_customization_admin_password" {
+  description = "Manually specify Administrator password."
+  type        = string
+  default     = null
+}
+
+variable "iam_customization_number_of_auto_logons" {
+  description = "Number of times to log on automatically. 0 means disabled."
+  type        = number
+  default     = 0
+}
+
+variable "iam_customization_join_domain" {
+  description = "Enable this VM to join a domain."
+  type        = bool
+  default     = false
+}
+
+variable "iam_customization_join_org_domain" {
+  description = "Set to true to use organization's domain."
+  type        = bool
+  default     = false
+}
+
+variable "iam_customization_join_domain_name" {
+  description = "Set the domain name to override organization's domain name."
+  type        = string
+  default     = null
+}
+
+variable "iam_customization_join_domain_user" {
+  description = "User to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "iam_customization_join_domain_password" {
+  description = "Password to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "iam_customization_join_domain_account_ou" {
+  description = "Organizational unit to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "iam_customization_initscript" {
+  description = "Provide initscript to be executed when customization is applied."
+  type        = string
+  default     = null
+}
+
+
 
 #teradata variables 
 
@@ -1630,6 +2107,10 @@ variable "teradata_vcd_allow_unverified_ssl" {
 
 variable "teradata_vcd_max_retry_timeout" {
 
+  
+}
+variable "teradata_os_type" {
+  type = string
   
 }
 
@@ -1768,7 +2249,7 @@ variable "teradata_vm_metadata_entries" {
     },
     {
       key         = "Operating System"
-      value       = "Ubuntu Linux (64-Bit)"
+      value       = "Microsoft Windows Server 2019 (64-bit)"
       type        = "MetadataStringValue"
       user_access = "READWRITE"
       is_system   = false
@@ -1852,6 +2333,97 @@ variable "teradata_vm_ips_index_multiplier" {
   type        = number
   default     = 1
 }
+
+variable "teradata_customization_force" {
+  description = "Warning. Setting to true will cause the VM to reboot on every apply operation. This field works as a flag and triggers force customization when true during an update (terraform apply) every time. It never complains about a change in statefile. Can be used when guest customization is needed after VM configuration (e.g. NIC change, customization options change, etc.) and then set back to false. Note. It will not have effect when power_on field is set to false."
+  type        = bool
+  default     = false
+}
+
+variable "teradata_customization_enabled" {
+  description = "Enables guest customization which may occur on first boot or if the force flag is used. This option should be selected for Power on and Force re-customization to work."
+  type        = bool
+  default     = true
+}
+
+variable "teradata_customization_change_sid" {
+  description = "Allows to change SID (security identifier). Only applicable for Windows operating systems."
+  type        = bool
+  default     = true
+}
+
+variable "teradata_customization_allow_local_admin_password" {
+  description = "Allow local administrator password."
+  type        = bool
+  default     = true
+}
+
+variable "teradata_customization_must_change_password_on_first_login" {
+  description = "Require Administrator to change password on first login."
+  type        = bool
+  default     = false
+}
+
+variable "teradata_customization_auto_generate_password" {
+  description = "Auto generate password."
+  type        = bool
+  default     = true
+}
+
+variable "teradata_customization_admin_password" {
+  description = "Manually specify Administrator password."
+  type        = string
+  default     = null
+}
+
+variable "teradata_customization_number_of_auto_logons" {
+  description = "Number of times to log on automatically. 0 means disabled."
+  type        = number
+  default     = 0
+}
+
+variable "teradata_customization_join_domain" {
+  description = "Enable this VM to join a domain."
+  type        = bool
+  default     = false
+}
+
+variable "teradata_customization_join_org_domain" {
+  description = "Set to true to use organization's domain."
+  type        = bool
+  default     = false
+}
+
+variable "teradata_customization_join_domain_name" {
+  description = "Set the domain name to override organization's domain name."
+  type        = string
+  default     = null
+}
+
+variable "teradata_customization_join_domain_user" {
+  description = "User to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "teradata_customization_join_domain_password" {
+  description = "Password to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "teradata_customization_join_domain_account_ou" {
+  description = "Organizational unit to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "teradata_customization_initscript" {
+  description = "Provide initscript to be executed when customization is applied."
+  type        = string
+  default     = null
+}
+
 
 
 #WEBMETHODS VARIABLES
@@ -2002,6 +2574,10 @@ variable "webmethods_vm_name" {
   description = "List of VM names"
   default     = []
 }
+variable "webmethods_os_type" {
+  type = string
+  
+}
 
 variable "webmethods_computer_name_format" {
   type        = string
@@ -2054,7 +2630,7 @@ variable "webmethods_vm_metadata_entries" {
     },
     {
       key         = "Operating System"
-      value       = "Ubuntu Linux (64-Bit)"
+      value       = "Microsoft Windows Server 2019 (64-bit)"
       type        = "MetadataStringValue"
       user_access = "READWRITE"
       is_system   = false
@@ -2139,3 +2715,92 @@ variable "webmethods_vm_ips_index_multiplier" {
   default     = 1
 }
 
+variable "webmethods_customization_force" {
+  description = "Warning. Setting to true will cause the VM to reboot on every apply operation. This field works as a flag and triggers force customization when true during an update (terraform apply) every time. It never complains about a change in statefile. Can be used when guest customization is needed after VM configuration (e.g. NIC change, customization options change, etc.) and then set back to false. Note. It will not have effect when power_on field is set to false."
+  type        = bool
+  default     = false
+}
+
+variable "webmethods_customization_enabled" {
+  description = "Enables guest customization which may occur on first boot or if the force flag is used. This option should be selected for Power on and Force re-customization to work."
+  type        = bool
+  default     = true
+}
+
+variable "webmethods_customization_change_sid" {
+  description = "Allows to change SID (security identifier). Only applicable for Windows operating systems."
+  type        = bool
+  default     = true
+}
+
+variable "webmethods_customization_allow_local_admin_password" {
+  description = "Allow local administrator password."
+  type        = bool
+  default     = true
+}
+
+variable "webmethods_customization_must_change_password_on_first_login" {
+  description = "Require Administrator to change password on first login."
+  type        = bool
+  default     = false
+}
+
+variable "webmethods_customization_auto_generate_password" {
+  description = "Auto generate password."
+  type        = bool
+  default     = true
+}
+
+variable "webmethods_customization_admin_password" {
+  description = "Manually specify Administrator password."
+  type        = string
+  default     = null
+}
+
+variable "webmethods_customization_number_of_auto_logons" {
+  description = "Number of times to log on automatically. 0 means disabled."
+  type        = number
+  default     = 0
+}
+
+variable "webmethods_customization_join_domain" {
+  description = "Enable this VM to join a domain."
+  type        = bool
+  default     = false
+}
+
+variable "webmethods_customization_join_org_domain" {
+  description = "Set to true to use organization's domain."
+  type        = bool
+  default     = false
+}
+
+variable "webmethods_customization_join_domain_name" {
+  description = "Set the domain name to override organization's domain name."
+  type        = string
+  default     = null
+}
+
+variable "webmethods_customization_join_domain_user" {
+  description = "User to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "webmethods_customization_join_domain_password" {
+  description = "Password to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "webmethods_customization_join_domain_account_ou" {
+  description = "Organizational unit to be used for domain join."
+  type        = string
+  default     = null
+}
+
+variable "webmethods_customization_initscript" {
+  description = "Provide initscript to be executed when customization is applied."
+  type        = string
+  default     = null
+}

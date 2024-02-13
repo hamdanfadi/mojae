@@ -55,6 +55,7 @@ resource "vcd_vapp_vm" "vm" {
   name                    = var.vm_name_format != "" ? format(var.vm_name_format, var.vm_name[each.key % length(var.vm_name)], each.key + 1) : var.vm_name[each.key % length(var.vm_name)]
   computer_name           = var.computer_name_format != "" ? format(var.computer_name_format, var.computer_name[each.key % length(var.computer_name)], each.key + 1) : var.computer_name[each.key % length(var.computer_name)]
   vapp_template_id        = data.vcd_catalog_vapp_template.template.id
+  //os_type =               = var.
   cpu_hot_add_enabled     = var.vm_cpu_hot_add_enabled
   memory_hot_add_enabled  = var.vm_memory_hot_add_enabled
   sizing_policy_id        = data.vcd_vm_sizing_policy.sizing_policy.id
@@ -95,6 +96,24 @@ resource "vcd_vapp_vm" "vm" {
     }
   
   }  
+
+    customization {
+    force                               = var.vm_customization_force
+    enabled                             = var.vm_customization_enabled
+    change_sid                          = var.vm_customization_change_sid
+    allow_local_admin_password          = var.vm_customization_allow_local_admin_password
+    must_change_password_on_first_login = var.vm_customization_must_change_password_on_first_login
+    auto_generate_password              = var.vm_customization_auto_generate_password
+    admin_password                      = var.vm_customization_admin_password
+    number_of_auto_logons               = var.vm_customization_number_of_auto_logons
+    join_domain                         = var.vm_customization_join_domain
+    join_org_domain                     = var.vm_customization_join_org_domain
+    join_domain_name                    = var.vm_customization_join_domain_name
+    join_domain_user                    = var.vm_customization_join_domain_user
+    join_domain_password                = var.vm_customization_join_domain_password
+    join_domain_account_ou              = var.vm_customization_join_domain_account_ou
+    initscript                          = var.vm_customization_initscript
+  }
 
 
 }
