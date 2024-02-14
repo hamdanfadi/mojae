@@ -121,7 +121,6 @@ iam_vcd_vdc = ""
 iam_vcd_url = ""
 iam_vcd_allow_unverified_ssl = true
 iam_org_network = ""
-iam_vapp_name = ""
 iam_vm_name = ""
 iam_catalog = ""
 iam_template = ""
