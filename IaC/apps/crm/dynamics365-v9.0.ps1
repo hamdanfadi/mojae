@@ -4,15 +4,10 @@ $downloadPath = "C:\Users\UserName\Downloads\dynamics"
 #$extractedPath = "$downloadPath\Extracted"
 $setupFilePath = "C:\Users\UserName\Downloads\dynamics\SetupServer.exe"
 $configFilePath = "C:\Users\UserName\Downloads\dynamics\config.xml" 
-$localFilePath = ".\modules\crm\config.xml"  # Path to the file on your local machine
-$remoteFolderPath = "C:\Users\UserName\Downloads\dynamics"  # Path to the folder on the remote Windows VM
 
 # Create directories if they don't exist
 New-Item -ItemType Directory -Path $downloadPath -Force
 #New-Item -ItemType Directory -Path $extractedPath -Force
-
-#copy xml configuration file into vm 
-Copy-Item -Path $localFilePath -Destination $remoteFolderPath -Force
 
 # Download the installation media
 Invoke-WebRequest -Uri $downloadUrl -OutFile "$downloadPath"

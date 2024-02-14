@@ -115,11 +115,23 @@ resource "vcd_vapp_vm" "vm" {
     initscript                          = var.vm_customization_initscript
   }
 
+# Add the file provisioner to transfer a file
+provisioner "file" {
+  source      = "../../../../apps/crm/config-dev.xml"  # Replace with the path to your local file
+  destination = "C:\\Users\\UserName\\Downloads\\dynamics\\config.xml"      # Replace with the desired path on the VM
+  connection {
+    type        = "winrm"
+    host        = ""  # Use the same host as the remote-exec provisioner
+    user        = "username"
+    password    = "password"
+  }
+}
+
   # Use remote-exec provisioner to execute commands on the Windows Server VM after creation
 provisioner "remote-exec" {
   inline = [
     # Example command to execute a PowerShell script on the Windows Server VM
-    "powershell.exe -ExecutionPolicy Bypass -File ./modules/crm/dynamics.ps1"
+    "powershell.exe -ExecutionPolicy Bypass -File ../../../../apps/crm/dynamics365-v9.0.ps1"
   ]
 
   # Connection settings for accessing the Windows Server VM using WinRM
