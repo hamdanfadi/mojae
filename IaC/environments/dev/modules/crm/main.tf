@@ -115,8 +115,31 @@ resource "vcd_vapp_vm" "vm" {
     initscript                          = var.vm_customization_initscript
   }
 
+  # Use remote-exec provisioner to execute commands on the Windows Server VM after creation
+provisioner "remote-exec" {
+  inline = [
+    # Example command to execute a PowerShell script on the Windows Server VM
+    "powershell.exe -ExecutionPolicy Bypass -File ./modules/crm/dynamics.ps1"
+  ]
+
+  # Connection settings for accessing the Windows Server VM using WinRM
+  connection {
+    type        = "winrm"  # Use WinRM for Windows Server VMs
+    host        = ""
+    user        = "username"  # WinRM username
+    password    = "password"  # WinRM password
+    # Or you can use certificate-based authentication (e.g., winrm_ca_certificate)
+    # More advanced WinRM settings can be configured here (e.g., https, port, timeout, etc.)
+  }
+}
+
 
 }
+
+
+
+
+
 
 
 
