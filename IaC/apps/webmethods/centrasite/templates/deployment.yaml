@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "centrasite.fullname" . }}
+  labels:
+    app: {{ include "centrasite.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "centrasite.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "centrasite.name" . }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: 8080
+        resources:
+{{ toYaml .Values.resources | indent 8 }}
