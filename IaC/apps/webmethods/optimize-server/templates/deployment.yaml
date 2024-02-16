@@ -1,24 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "optimize-server.fullname" . }}
+  name: {{ .Release.Name }}-optimize-server
   labels:
-    app: {{ include "optimize-server.name" . }}
+    app: optimize-server
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      app: {{ include "optimize-server.name" . }}
+      app: optimize-server
   template:
     metadata:
       labels:
-        app: {{ include "optimize-server.name" . }}
+        app: optimize-server
     spec:
       containers:
-      - name: {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
+      - name: optimize-server
+        image: {{ .Values.optimizeServer.image.repository }}:{{ .Values.optimizeServer.image.tag }}
         ports:
-        - containerPort: 8080
-        resources:
-{{ toYaml .Values.resources | indent 8 }}
+        - containerPort: {{ .Values.optimizeServer.ports.server }}
+        - containerPort: {{ .Values.optimizeServer.ports.admin }}

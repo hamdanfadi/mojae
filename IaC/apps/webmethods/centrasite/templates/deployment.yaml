@@ -1,24 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "centrasite.fullname" . }}
+  name: {{ .Release.Name }}-centrasite
   labels:
-    app: {{ include "centrasite.name" . }}
+    app: centrasite
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      app: {{ include "centrasite.name" . }}
+      app: centrasite
   template:
     metadata:
       labels:
-        app: {{ include "centrasite.name" . }}
+        app: centrasite
     spec:
       containers:
-      - name: {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
+      - name: centrasite
+        image: {{ .Values.centrasite.image.repository }}:{{ .Values.centrasite.image.tag }}
         ports:
-        - containerPort: 8080
-        resources:
-{{ toYaml .Values.resources | indent 8 }}
+        - containerPort: {{ .Values.centrasite.ports.internal }}
+        - containerPort: {{ .Values.centrasite.ports.external }}
