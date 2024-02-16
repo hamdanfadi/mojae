@@ -22,3 +22,4 @@ spec:
         - containerPort: 443
         resources:
 {{ toYaml .Values.resources | indent 8 }}
+

@@ -1,18 +1,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Release.Name }}-optimize-server-ingress
+  name: {{ .Release.Name }}-centrasite-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: optimize.example.com
+  - host: centrasite.example.com
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: {{ .Release.Name }}-optimize-server
+            name: {{ .Release.Name }}-centrasite
             port:
-              number: 5555
+              number: {{ .Values.centrasite.ports.external }}

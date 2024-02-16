@@ -1,19 +1,28 @@
-image:
-  repository: softwareag/integration-server
-  tag: latest
-  pullPolicy: IfNotPresent
+integrationServer:
+  replicas: 1
+  image:
+    repository: myregistry/integration-server
+    tag: latest
+  ports:
+    server: 5555
+    admin: 9999
+  instanceName: default
+  password: "mysecretpassword"
+  storageSize: "1Gi"
 
-replicaCount: 1
+configMap:
+  serverCnf: |
+    # Integration Server configuration
+    # Add your server configuration here
+  loggingCnf: |
+    # Logging configuration
+    # Add your logging configuration here
 
-service:
-  type: NodePort
-  port: 5555
-  nodePort: 30001
+secrets:
+  password: "mysecretpassword"
 
-resources:
-  limits:
-    cpu: 500m
-    memory: 1Gi
-  requests:
-    cpu: 200m
-    memory: 512Mi
+persistentVolumeClaim:
+  storageSize: "1Gi"
+
+ingress:
+  host: integration.example.com
