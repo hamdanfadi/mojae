@@ -6,8 +6,10 @@ global:
 # Liferay values
 liferay:
   image:
-    repository: liferay/dxp
-    tag: 7.4.13-u111
+#    repository: liferay/dxp
+#    tag: 7.4.13-u111
+    repository: liferay
+    tag: 7.4-sql
   resources:
     requests:
       memory: "2048Mi"
