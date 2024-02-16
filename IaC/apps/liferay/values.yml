@@ -20,7 +20,7 @@ liferay:
 elasticsearch:
   image:
     repository: liferaycloud/elasticsearch
-    tag: 8.11.4-5.2.1
+    tag: 7.17.16-5.2.1
   resources:
     limits:
       memory: "2024Mi"
