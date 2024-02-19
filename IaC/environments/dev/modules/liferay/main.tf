@@ -210,6 +210,37 @@ resource "vcd_vapp_vm" "vm" {
   }
 
 
+  # Add the file provisioner to transfer a file
+provisioner "file" {
+  source      = "../../../../apps/liferay/sql-s/ConfigurationFile.ini"  # Replace with the path to your local file
+  destination = "C:\\Users\\UserName\\Downloads\\..."      # Replace with the desired path on the VM
+  connection {
+    type        = "winrm"
+    host        = ""  # Use the same host as the remote-exec provisioner
+    user        = "username"
+    password    = "password"
+  }
+}
+
+  # Use remote-exec provisioner to execute commands on the Windows Server VM after creation
+provisioner "remote-exec" {
+  inline = [
+    # Example command to execute a PowerShell script on the Windows Server VM
+    "powershell.exe -ExecutionPolicy Bypass -File ../../../../apps/liferay/sql-s/..."
+  ]
+
+  # Connection settings for accessing the Windows Server VM using WinRM
+  connection {
+    type        = "winrm"  # Use WinRM for Windows Server VMs
+    host        = ""
+    user        = "username"  # WinRM username
+    password    = "password"  # WinRM password
+    # Or you can use certificate-based authentication (e.g., winrm_ca_certificate)
+    # More advanced WinRM settings can be configured here (e.g., https, port, timeout, etc.)
+  }
+}
+
+
 }
 
 
