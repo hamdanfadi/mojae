@@ -93,9 +93,6 @@ variable "ca_file" {
   type = string
 }
 
-variable "env" {
-  type    = string
-}
 
 variable "vcd_user" {
   type = string
@@ -137,9 +134,6 @@ variable "vdc_group_name" {
   type = string
 }
 
-variable "vdc_edge_name" {
-  type = string
-}
 
 variable "vdc_name" {
   type        = string
@@ -242,7 +236,7 @@ variable "vm_min_cpu" {
 
 variable "vm_count" {
   type    = number
-  default = ""
+  default = 1
 }
 
 variable "vm_metadata_entries" {

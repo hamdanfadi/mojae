@@ -132,9 +132,6 @@ variable "vdc_group_name" {
   type = string
 }
 
-variable "vdc_edge_name" {
-  type = string
-}
 
 variable "vdc_name" {
   type        = string

@@ -136,9 +136,6 @@ variable "vdc_group_name" {
   type = string
 }
 
-variable "vdc_edge_name" {
-  type = string
-}
 
 variable "vdc_name" {
   type        = string
@@ -241,7 +238,7 @@ variable "vm_min_cpu" {
 //do we have to add this variables on the root 
 variable "vm_count" {
   type    = number
-  default = ""
+  default = 1
 }
 
 variable "vm_metadata_entries" {
