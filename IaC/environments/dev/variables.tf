@@ -237,9 +237,6 @@ variable "webmethods_node_pools_memory" {
 
 
 # LIFERAY VARIABLES
-variable "liferay_tkg_cluster_name" {
-  type    = string
-}
 
 variable "liferay_tmc_oidc_issuer" {
   
@@ -305,9 +302,7 @@ variable "liferay_vdc_group_name" {
   type = string
 }
 
-variable "liferay_vdc_edge_name" {
-  type = string
-}
+
 
 variable "liferay_vdc_name" {
   type        = string
@@ -410,7 +405,7 @@ variable "liferay_vm_min_cpu" {
 
 variable "liferay_vm_count" {
   type    = number
-  default = ""
+  default = 1
 }
 
 variable "liferay_vm_metadata_entries" {
@@ -491,6 +486,35 @@ variable "liferay_network_interfaces" {
       is_primary          = false
     }
   ]
+}
+
+variable "liferay_org_network" {
+  type = string
+}
+
+
+variable "liferay_catalog" {
+  type = string
+  
+}
+variable "liferay_mem" {
+  type = number
+}
+
+variable "liferay_template" {
+  type = string
+}
+variable "liferay_cpu_num" {
+  type = number
+  
+}
+
+variable "liferay_cores" {
+  type = number
+}
+
+variable "liferay_power_on" {
+  type = bool
 }
 
 
@@ -611,6 +635,35 @@ variable "liferay_customization_initscript" {
 
 
 #CRM VARIABLES ##
+
+variable "crm_org_network" {
+  type = string
+}
+
+
+variable "crm_catalog" {
+  type = string
+  
+}
+variable "crm_mem" {
+  type = number
+}
+
+variable "crm_template" {
+  type = string
+}
+variable "crm_cpu_num" {
+  type = number
+  
+}
+
+variable "crm_cores" {
+  type = number
+}
+
+variable "crm_power_on" {
+  type = bool
+}
 variable "crm_vcd_user" {
   type = string
 }
@@ -652,9 +705,7 @@ variable "crm_vdc_group_name" {
   type = string
 }
 
-variable "crm_vdc_edge_name" {
-  type = string
-}
+
 
 variable "crm_vdc_name" {
   type        = string
@@ -762,7 +813,7 @@ variable "crm_vm_min_cpu" {
 
 variable "crm_vm_count" {
   type    = number
-  default = ""
+  default = 1
 }
 
 variable "crm_vm_metadata_entries" {
@@ -963,6 +1014,34 @@ variable "crm_customization_initscript" {
 
 # DMS VARIABLES 
 
+variable "dms_org_network" {
+  type = string
+}
+
+
+variable "dms_catalog" {
+  type = string
+  
+}
+variable "dms_mem" {
+  type = number
+}
+
+variable "dms_template" {
+  type = string
+}
+variable "dms_cpu_num" {
+  type = number
+  
+}
+
+variable "dms_cores" {
+  type = number
+}
+
+variable "dms_power_on" {
+  type = bool
+}
 
 
 variable "dms_vcd_user" {
@@ -1006,9 +1085,6 @@ variable "dms_vdc_group_name" {
   type = string
 }
 
-variable "dms_vdc_edge_name" {
-  type = string
-}
 
 variable "dms_vdc_name" {
   type        = string
@@ -1115,7 +1191,7 @@ variable "dms_vm_min_cpu" {
 
 variable "dms_vm_count" {
   type    = number
-  default = ""
+  default = 1
 }
 
 variable "dms_vm_metadata_entries" {
@@ -1315,6 +1391,36 @@ variable "dms_customization_initscript" {
 
 
 #IVR VARIABLES
+
+variable "ivr_org_network" {
+  type = string
+}
+
+
+variable "ivr_catalog" {
+  type = string
+  
+}
+variable "ivr_mem" {
+  type = number
+}
+
+variable "ivr_template" {
+  type = string
+}
+variable "ivr_cpu_num" {
+  type = number
+  
+}
+
+variable "ivr_cores" {
+  type = number
+}
+
+variable "ivr_power_on" {
+  type = bool
+}
+
 variable "ivr_env" {
   type    = string
 }
@@ -1357,10 +1463,6 @@ variable "ivr_vdc_org_name" {
   type = string
 }
 variable "ivr_vdc_group_name" {
-  type = string
-}
-
-variable "ivr_vdc_edge_name" {
   type = string
 }
 
@@ -1471,7 +1573,7 @@ variable "ivr_vm_min_cpu" {
 
 variable "ivr_vm_count" {
   type    = number
-  default = ""
+  default = 1
 }
 
 variable "ivr_vm_metadata_entries" {
@@ -1670,12 +1772,37 @@ variable "ivr_customization_initscript" {
 
 
 #IAM VARIABLES
-
-variable "iam_env" {
-  type    = string
+variable "iam_org_network" {
+  type = string
 }
 
-variable "iam_tkg_cluster_name" {
+
+variable "iam_catalog" {
+  type = string
+  
+}
+variable "iam_mem" {
+  type = number
+}
+
+variable "iam_template" {
+  type = string
+}
+variable "iam_cpu_num" {
+  type = number
+  
+}
+
+variable "iam_cores" {
+  type = number
+}
+
+variable "iam_power_on" {
+  type = bool
+}
+
+
+variable "iam_env" {
   type    = string
 }
 
@@ -1739,9 +1866,7 @@ variable "iam_vdc_group_name" {
   type = string
 }
 
-variable "iam_vdc_edge_name" {
-  type = string
-}
+
 variable "iam_os_type" {
   type = string
   
@@ -1847,7 +1972,7 @@ variable "iam_vm_min_cpu" {
 
 variable "iam_vm_count" {
   type    = number
-  default = ""
+  default = 1
 }
 
 variable "iam_vm_metadata_entries" {
@@ -2048,6 +2173,36 @@ variable "iam_customization_initscript" {
 
 #teradata variables 
 
+variable "teradata_org_network" {
+  type = string
+}
+
+
+variable "teradata_catalog" {
+  type = string
+  
+}
+variable "teradata_mem" {
+  type = number
+}
+
+variable "teradata_template" {
+  type = string
+}
+variable "teradata_cpu_num" {
+  type = number
+  
+}
+
+variable "teradata_cores" {
+  type = number
+}
+
+variable "teradata_power_on" {
+  type = bool
+}
+
+
 variable "teradata_env" {
   type    = string
 }
@@ -2122,9 +2277,7 @@ variable "teradata_vdc_group_name" {
   type = string
 }
 
-variable "teradata_vdc_edge_name" {
-  type = string
-}
+
 
 variable "teradata_vdc_name" {
   type        = string
@@ -2227,7 +2380,7 @@ variable "teradata_vm_min_cpu" {
 
 variable "teradata_vm_count" {
   type    = number
-  default = ""
+  default = 1
 }
 
 variable "teradata_vm_metadata_entries" {
@@ -2429,13 +2582,41 @@ variable "teradata_customization_initscript" {
 #WEBMETHODS VARIABLES
 
 
+
+variable "webmethods_org_network" {
+  type = string
+}
+
+
+variable "webmethods_catalog" {
+  type = string
+  
+}
+variable "webmethods_mem" {
+  type = number
+}
+
+variable "webmethods_template" {
+  type = string
+}
+variable "webmethods_cpu_num" {
+  type = number
+  
+}
+
+variable "webmethods_cores" {
+  type = number
+}
+
+variable "webmethods_power_on" {
+  type = bool
+}
+
 variable "webmethods_env" {
   type    = string
 }
 
-variable "webmethods_tkg_cluster_name" {
-  type    = string
-}
+
 
 variable "webmethods_tmc_oidc_issuer" {
   
@@ -2499,9 +2680,7 @@ variable "webmethods_vdc_group_name" {
   type = string
 }
 
-variable "webmethods_vdc_edge_name" {
-  type = string
-}
+
 
 variable "webmethods_vdc_name" {
   type        = string
@@ -2608,7 +2787,7 @@ variable "webmethods_vm_min_cpu" {
 
 variable "webmethods_vm_count" {
   type    = number
-  default = ""
+  default = 1
 }
 
 variable "webmethods_vm_metadata_entries" {
