@@ -239,6 +239,8 @@ variable "webmethods_node_pools_memory" {
 # LIFERAY VARIABLES
 
 variable "liferay_tmc_oidc_issuer" {
+  type = string
+  default = "value"
   
 }
 variable "liferay_tmc_username" {
@@ -250,9 +252,11 @@ variable "liferay_tmc_password" {
 }
 variable "liferay_tmc_endpoint" {
   type = string
+  default = "value"
 }
 variable "liferay_ca_file" {
   type = string
+  default = "value"
 }
 
 variable "liferay_os_type" {
@@ -291,15 +295,17 @@ variable "liferay_vcd_allow_unverified_ssl" {
 }
 
 variable "liferay_vcd_max_retry_timeout" {
-
-  
+  type = number
+  default = 60  
 }
 
 variable "liferay_vdc_org_name" {
   type = string
+  default = "value"
 }
 variable "liferay_vdc_group_name" {
   type = string
+  default = "value"
 }
 
 
@@ -347,6 +353,7 @@ variable "liferay_reboot_vapp_on_removal" {
 
 variable "liferay_catalog_org_name" {
   type = string
+  default = "value"
 }
 
 variable "liferay_catalog_name" {
@@ -638,31 +645,38 @@ variable "liferay_customization_initscript" {
 
 variable "crm_org_network" {
   type = string
+  default = "value"
 }
 
 
 variable "crm_catalog" {
   type = string
+  default = "value"
   
 }
 variable "crm_mem" {
   type = number
+  default = 4096
 }
 
 variable "crm_template" {
   type = string
+  default = "value"
 }
 variable "crm_cpu_num" {
   type = number
+  default = 0
   
 }
 
 variable "crm_cores" {
   type = number
+  default = 2
 }
 
 variable "crm_power_on" {
   type = bool
+  default = false
 }
 variable "crm_vcd_user" {
   type = string
@@ -694,15 +708,19 @@ variable "crm_vcd_allow_unverified_ssl" {
 }
 
 variable "crm_vcd_max_retry_timeout" {
+  type = number
+  default = 60
 
   
 }
 
 variable "crm_vdc_org_name" {
   type = string
+  default = "value"
 }
 variable "crm_vdc_group_name" {
   type = string
+  default = "value"
 }
 
 
@@ -755,16 +773,17 @@ variable "crm_reboot_vapp_on_removal" {
 
 variable "crm_catalog_org_name" {
   type = string
+  default = "value"
 }
 
 variable "crm_catalog_name" {
   type    = string
-  default = ""
+  default = "value"
 }
 
 variable "crm_catalog_template_name" {
   type    = string
-  default = ""
+  default = "value"
 }
 
 variable "crm_vapp_name" {
@@ -1074,22 +1093,24 @@ variable "dms_vcd_allow_unverified_ssl" {
 }
 
 variable "dms_vcd_max_retry_timeout" {
-
-  
+  type = number
+  default = 60  
 }
 
 variable "dms_vdc_org_name" {
   type = string
+  default = "value"
 }
 variable "dms_vdc_group_name" {
   type = string
+  default = "value"
 }
 
 
 variable "dms_vdc_name" {
   type        = string
   description = "Cloud Director VDC Name"
-  default     = ""
+  default     = "v"
 }
 variable "dms_os_type" {
   type = string
@@ -1099,7 +1120,7 @@ variable "dms_os_type" {
 variable "dms_vdc_edge_name" {
   type        = string
   description = "Cloud Director Edge Name"
-  default     = ""
+  default     = "e"
 }
 
 variable "dms_vm_sizing_policy_name" {
@@ -1133,6 +1154,7 @@ variable "dms_reboot_vapp_on_removal" {
 
 variable "dms_catalog_org_name" {
   type = string
+  default = "value"
 }
 
 variable "dms_catalog_name" {
@@ -1423,6 +1445,7 @@ variable "ivr_power_on" {
 
 variable "ivr_env" {
   type    = string
+  default = "dev"
 }
 
 variable "ivr_vcd_user" {
@@ -1455,15 +1478,17 @@ variable "ivr_vcd_allow_unverified_ssl" {
 }
 
 variable "ivr_vcd_max_retry_timeout" {
-
-  
+  type = number
+  default = 60  
 }
 
 variable "ivr_vdc_org_name" {
   type = string
+  default = "value"
 }
 variable "ivr_vdc_group_name" {
   type = string
+  default = "value"
 }
 
 variable "ivr_vdc_name" {
@@ -1515,6 +1540,7 @@ variable "ivr_reboot_vapp_on_removal" {
 
 variable "ivr_catalog_org_name" {
   type = string
+  default = "value"
 }
 
 variable "ivr_catalog_name" {
@@ -1804,10 +1830,13 @@ variable "iam_power_on" {
 
 variable "iam_env" {
   type    = string
+  default = "dev"
 }
 
 
 variable "iam_tmc_oidc_issuer" {
+  type = string
+  default = "url"
   
 }
 variable "iam_tmc_username" {
@@ -1819,9 +1848,11 @@ variable "iam_tmc_password" {
 }
 variable "iam_tmc_endpoint" {
   type = string
+  default = "value"
 }
 variable "iam_ca_file" {
   type = string
+  default = "value"
 }
 
 
@@ -1837,11 +1868,13 @@ variable "iam_vcd_pass" {
 
 variable "iam_vcd_org" {
   type = string
+  default = "value"
   
 }
 
 variable "iam_vcd_vdc" {
   type = string
+  default = "value"
 }
 
 variable "iam_vcd_url" {
@@ -1855,15 +1888,19 @@ variable "iam_vcd_allow_unverified_ssl" {
 }
 
 variable "iam_vcd_max_retry_timeout" {
+  type = number
+  default = 60
 
   
 }
 
 variable "iam_vdc_org_name" {
   type = string
+  default = "value"
 }
 variable "iam_vdc_group_name" {
   type = string
+  default = "value"
 }
 
 
@@ -1914,6 +1951,7 @@ variable "iam_reboot_vapp_on_removal" {
 
 variable "iam_catalog_org_name" {
   type = string
+  default = "value"
 }
 
 variable "iam_catalog_name" {
@@ -2175,61 +2213,46 @@ variable "iam_customization_initscript" {
 
 variable "teradata_org_network" {
   type = string
+  default = "value"
 }
 
 
 variable "teradata_catalog" {
   type = string
+  default = "value"
   
 }
 variable "teradata_mem" {
   type = number
+  default = 4096
 }
 
 variable "teradata_template" {
   type = string
+  default = "value"
 }
 variable "teradata_cpu_num" {
   type = number
+  default = 6
   
 }
 
 variable "teradata_cores" {
   type = number
+  default = 2
 }
 
 variable "teradata_power_on" {
   type = bool
+  default = false
 }
 
 
 variable "teradata_env" {
   type    = string
+  default = "dev"
 }
 
-variable "teradata_tkg_cluster_name" {
-  type    = string
-}
-
-variable "teradata_tmc_oidc_issuer" {
-  
-}
-
-variable "teradata_tmc_username" {
-  type = string
-}
-
-variable "teradata_tmc_password" {
-  type = string
-}
-
-variable "teradata_tmc_endpoint" {
-  type = string
-}
-
-variable "teradata_ca_file" {
-  type = string
-}
 
 variable "teradata_vcd_user" {
   type = string
@@ -2261,7 +2284,8 @@ variable "teradata_vcd_allow_unverified_ssl" {
 }
 
 variable "teradata_vcd_max_retry_timeout" {
-
+type = number
+default = 60
   
 }
 variable "teradata_os_type" {
@@ -2271,10 +2295,12 @@ variable "teradata_os_type" {
 
 variable "teradata_vdc_org_name" {
   type = string
+  default = "value"
 }
 
 variable "teradata_vdc_group_name" {
   type = string
+  default = "value"
 }
 
 
@@ -2322,6 +2348,7 @@ variable "teradata_reboot_vapp_on_removal" {
 
 variable "teradata_catalog_org_name" {
   type = string
+  default = "value"
 }
 
 variable "teradata_catalog_name" {
@@ -2614,11 +2641,14 @@ variable "webmethods_power_on" {
 
 variable "webmethods_env" {
   type    = string
+  default = "dev"
 }
 
 
 
 variable "webmethods_tmc_oidc_issuer" {
+  type = string
+  default = "url"
   
 }
 
@@ -2632,10 +2662,12 @@ variable "webmethods_tmc_password" {
 
 variable "webmethods_tmc_endpoint" {
   type = string
+  default = "value"
 }
 
 variable "webmethods_ca_file" {
   type = string
+  default = "value"
 }
 
 variable "webmethods_vcd_user" {
@@ -2668,16 +2700,18 @@ variable "webmethods_vcd_allow_unverified_ssl" {
 }
 
 variable "webmethods_vcd_max_retry_timeout" {
-
-  
+  type = number
+  default = 60  
 }
 
 variable "webmethods_vdc_org_name" {
   type = string
+  default = "value"
 }
 
 variable "webmethods_vdc_group_name" {
   type = string
+  default = "value"
 }
 
 
@@ -2725,11 +2759,12 @@ variable "webmethods_reboot_vapp_on_removal" {
 
 variable "webmethods_catalog_org_name" {
   type = string
+  default = "value"
 }
 
 variable "webmethods_catalog_name" {
   type    = string
-  default = ""
+  default = "value"
 }
 
 variable "webmethods_catalog_template_name" {
