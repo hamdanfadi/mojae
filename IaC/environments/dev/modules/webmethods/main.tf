@@ -83,6 +83,12 @@ resource "tanzu-mission-control_cluster" "create_tkg_vsphere_cluster" {
             }
           }
 
+         info {
+            name        = "default-nodepool" # default node pool name `default-nodepool`
+            description = "tkgs workload nodepool"
+          }
+
+
         }
 
     
