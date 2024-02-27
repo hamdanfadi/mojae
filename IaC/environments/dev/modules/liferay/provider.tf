@@ -24,7 +24,7 @@ provider "tanzu-mission-control" {
     username    = var.tmc_username    # optionally use TMC_SM_USERNAME env var
     password    = var.tmc_password    # optionally use TMC_SM_PASSWORD env var
   }
-  ca_file = var.ca_file # Path to Host's root ca set. The certificates issued by the issuer should be trusted by the host accessing TMC Self-Managed via TMC terraform provider.
+  # ca_file = var.ca_file # Path to Host's root ca set. The certificates issued by the issuer should be trusted by the host accessing TMC Self-Managed via TMC terraform provider.
 }
 
 
