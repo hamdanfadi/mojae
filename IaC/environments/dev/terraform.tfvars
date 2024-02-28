@@ -22,6 +22,6 @@ teradata_vcd_user = "terraform"
 teradata_vcd_pass = "3fPwFmOq084C9pwP"
 
 webmethods_tmc_username = "terraformk8s"
-webmethods_tmc_password = "tmc-pass"
+webmethods_tmc_password = "3fPwFmOq084C9pwP"
 webmethods_vcd_user = "terraform"
 webmethods_vcd_pass = "3fPwFmOq084C9pwP"
