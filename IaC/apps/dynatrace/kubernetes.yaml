@@ -5179,7 +5179,7 @@ spec:
             readOnlyRootFilesystem: true
             runAsGroup: 1001
             runAsNonRoot: true
-            runAsUser: 1001
+            runAsUser: 20000
             seccompProfile:
               type: RuntimeDefault
       affinity:
