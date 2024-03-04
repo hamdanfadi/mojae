@@ -34,19 +34,19 @@ pipeline {
                     // Run Terraform based on the chosen action and optional target
                     if (params.TARGET) {
                         if (params.ACTION == 'apply') {
-                            sh 'terraform init'
-                            sh 'terraform apply -auto-approve -target=${params.TARGET}'
+                            sh "terraform init"
+                            sh "terraform apply -auto-approve -target=${params.TARGET}"
                         } else if (params.ACTION == 'destroy') {
-                            sh 'terraform init'
-                            sh 'terraform destroy -auto-approve -target=${params.TARGET}'
+                            sh "terraform init"
+                            sh "terraform destroy -auto-approve -target=${params.TARGET}"
                         }
                     } else {
                         if (params.ACTION == 'apply') {
-                            sh 'terraform init'
-                            sh 'terraform apply -auto-approve'
+                            sh "terraform init"
+                            sh "terraform apply -auto-approve"
                         } else if (params.ACTION == 'destroy') {
-                            sh 'terraform init'
-                            sh 'terraform destroy -auto-approve'
+                            sh "terraform init"
+                            sh "terraform destroy -auto-approve"
                         }
                     }
                 }
